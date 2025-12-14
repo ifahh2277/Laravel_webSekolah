@@ -6,142 +6,173 @@
   <title>Login TKIT Jamilul Mu'minin</title>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", "Segoe UI", sans-serif;
-    }
-
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    * { box-sizing: border-box; }
     body {
-      background: #f4f4f4;
-      color: #333;
+      margin: 0;
+      font-family: 'Poppins', 'Segoe UI', sans-serif;
+      background: linear-gradient(180deg,#f3f6f9 0%, #ffffff 100%);
+      color: #0f172a;
       min-height: 100vh;
-      overflow-x: hidden;
+      -webkit-font-smoothing:antialiased;
     }
 
     .login-container {
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
       min-height: 100vh;
       width: 100%;
+      padding: 3rem 2rem;
     }
 
     .login-left {
-      flex: 1;
-      background: #e8f5e9;
+      flex: 0 0 58%;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+    }
+
+    .photo-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.95));
+      padding: 0.6rem;
+      border-radius: 16px;
+      max-width: 960px;
+      width: 100%;
+      box-shadow: 0 18px 40px rgba(2,6,23,0.08);
+      border: 1px solid rgba(2,6,23,0.04);
+      overflow: hidden;
+      position: relative;
     }
 
     .login-image {
       width: 100%;
-      height: 100%;
+      height: auto;
+      max-height: 620px;
       object-fit: cover;
+      border-radius: 12px;
+      display: block;
+      transition: transform 0.45s ease, filter 0.35s ease;
+      box-shadow: inset 0 -40px 80px rgba(0,0,0,0.06);
+    }
+
+    .photo-overlay {
+      position: absolute;
+      left: 0; right: 42%; top: 0; bottom: 0;
+      background: linear-gradient(90deg, rgba(6,95,70,0.08), rgba(6,95,70,0.02));
+      pointer-events: none;
     }
 
     .login-right {
-      flex: 1;
+      flex: 0 0 36%;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #fff;
       padding: 2rem;
     }
 
     .login-box {
       width: 100%;
-      max-width: 400px;
+      max-width: 380px;
       text-align: center;
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 28px 26px;
+      box-shadow: 0 12px 30px rgba(2,6,23,0.06);
+      border: 1px solid rgba(2,6,23,0.03);
     }
 
     .logo-image {
-      width: 90px;
+      width: 64px;
       height: auto;
       margin-bottom: 10px;
-    }
-
-    .login-box h2 {
-      color: #2d6016;
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-    }
-
-    label {
-      font-weight: 600;
-      display: block;
-      margin-top: 1rem;
-      text-align: left;
-    }
-
-    input {
-      width: 100%;
-      padding: 0.8rem;
-      margin-top: 0.5rem;
       border-radius: 8px;
-      border: 1px solid #ccc;
-      outline: none;
-      font-size: 1rem;
+      background: rgba(255,255,255,0.9);
+      padding: 6px;
+      box-shadow: 0 6px 18px rgba(2,6,23,0.06);
     }
 
-    input:focus {
-      border-color: #4CAF50;
-      box-shadow: 0 0 4px rgba(76, 175, 80, 0.3);
-    }
+    .login-box h2 { color: #064e3b; font-size: 1.45rem; margin-bottom: 0.25rem; font-weight: 800; letter-spacing: 0.2px; }
+    .login-box p { color: #334155; margin-bottom: 1rem; font-size: 0.95rem; }
 
-    .btn-login {
-      margin-top: 2rem;
-      width: 100%;
-      padding: 0.9rem;
-      background: linear-gradient(135deg, #4CAF50, #FDD835);
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
+    label { font-weight: 600; display: block; margin-top: 0.8rem; color: #0f172a; text-align: left; font-size: 0.88rem; }
 
-    .btn-login:hover {
-      background: linear-gradient(135deg, #2d6016, #F9A825);
-      transform: translateY(-2px);
+    input { width: 100%; padding: 0.78rem 0.9rem; margin-top: 0.45rem; border-radius: 10px; border: 1px solid rgba(2,6,23,0.08); outline: none; font-size: 0.98rem; background: #fbfdff; }
+    input:focus { border-color: rgba(6,95,70,0.9); box-shadow: 0 6px 18px rgba(6,95,70,0.08); }
+
+    .btn-login { margin-top: 1.6rem; width: 100%; padding: 0.92rem; background: linear-gradient(90deg,#0ea5a1 0%, #087f5b 100%); border: none; border-radius: 10px; color: white; font-size: 1rem; font-weight: 700; cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; box-shadow: 0 8px 24px rgba(8,127,91,0.12); }
+    .btn-login:hover { transform: translateY(-3px); box-shadow: 0 20px 44px rgba(8,127,91,0.16); }
+
+    .forgot-wrapper { margin-top: 0.6rem; text-align: left; font-size: 0.88rem; }
+    .forgot-wrapper a { color: #0b815a; font-weight: 600; text-decoration: none; }
+    .register-wrapper { margin-top: 1.15rem; text-align: center; font-size: 0.92rem; }
+    .register-wrapper a { color: #0b815a; font-weight: 700; text-decoration: none; }
+
+    .small-muted { color: #64748b; font-size: 0.85rem; margin-top: 6px; }
+
+    @media (max-width: 900px) {
+      .login-container { flex-direction: column; padding: 2rem 1rem; }
+      .login-left, .login-right { flex: 1 1 100%; }
+      .login-image { max-height: 420px; border-radius: 10px; }
+      .photo-overlay { display: none; }
+      .login-right { padding: 1.25rem; }
+      .login-box { padding: 20px; max-width: 100%; }
     }
   </style>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    @media (max-width: 900px) {
+      .login-left, .login-right { flex: 1 1 100%; }
+      .login-image { max-height: 360px; }
+      .login-box { padding: 1rem; }
+    }
+  </style>
+
 </head>
 
 <body>
   <div class="login-container">
 
-    {{-- Gambar Kiri --}}
+    <!-- Kiri -->
     <div class="login-left">
-      <img src="{{ asset('images/pulu_pulu.jpg') }}" class="login-image" alt="Siswa TKIT">
+      <div class="photo-card">
+        <img src="{{ asset('image/pulu pulu.jpg') }}" alt="Siswa TKIT" class="login-image">
+      </div>
+      <div class="photo-overlay"></div>
     </div>
 
-    {{-- Form Login --}}
+    <!-- Kanan -->
     <div class="login-right">
       <div class="login-box">
-        
-        <img src="{{ asset('images/logo_tkit.png') }}" alt="logo Jamilul Mu'minin" class="logo-image">
+
+        <img src="{{ asset('image/logo putih.jpg') }}" alt="logo Jamilul Mu'minin" class="logo-image">
         <h2>TKIT Jamilul Mu'minin</h2>
         <p>Tahun Ajaran 2025 / 2026</p>
 
-        <form action="{{ route('login.proses') }}" method="POST" id="loginForm">
+        <!-- FORM -->
+        <form action="{{ route('login.post') }}" method="POST">
           @csrf
-
           <label for="username">No HP / Username</label>
           <input type="text" id="username" name="username" placeholder="Masukkan username" required>
 
           <label for="password">Password</label>
-          <input type="password" id="password" name="password" placeholder="password" required>
+          <input type="password" id="password" name="password" placeholder="Masukkan password" required>
+
+          <div class="forgot-wrapper">
+            <span>Lupa Kata Sandi?</span>
+            <a href="#">Pulihkan di sini</a>
+          </div>
 
           <button type="submit" class="btn-login">Masuk Halaman</button>
 
-          {{-- Pesan error Laravel --}}
-          @if(session('error'))
-            <p style="color:red; margin-top:10px">{{ session('error') }}</p>
-          @endif
+          <div class="register-wrapper">
+            <span>Tidak punya akun?</span>
+            <a href="{{ route('pendaftaran') }}">Daftar di sini</a>
+          </div>
         </form>
 
       </div>
@@ -149,28 +180,6 @@
 
   </div>
 
-
-  {{-- Jika mau tetap pakai login dummy JS, uncomment ini --}}
-  {{-- 
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const user = document.getElementById("username").value.trim();
-      const pass = document.getElementById("password").value.trim();
-
-      if (
-        (user === "admin" && pass === "admin123") ||
-        (user === "guru" && pass === "guru123") ||
-        (user === "orangtua" && pass === "orangtua123")
-      ) {
-        alert(`Selamat datang, ${user}!`);
-        window.location.href = "/profil";
-      } else {
-        alert("Username atau kode akses salah. Silakan coba lagi.");
-      }
-    });
-  </script>
-  --}}
+  <script src="login.js"></script>
 </body>
 </html>
